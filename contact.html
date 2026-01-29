@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>name - Contact Us</title>
+    <link rel="icon" type="image/png" href="shoes.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-brown: #8B4513;
+            --light-brown: #A0522D;
+            --dark-brown: #5D4037;
+            --black: #121212;
+            --dark-gray: #2C2C2C;
+            --medium-gray: #555555;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --accent: #D2691E;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--primary-brown);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-brown);
+            font-weight: 800;
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav li {
+            margin-left: 30px;
+        }
+
+        .main-nav li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .main-nav li a:hover {
+            color: var(--primary-brown);
+        }
+
+        .main-nav li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-brown);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+        }
+
+        .main-nav li a:hover:after {
+            width: 100%;
+        }
+
+        .main-nav li a.active {
+            color: var(--primary-brown);
+        }
+
+        .main-nav li a.active:after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-brown);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1999;
+        }
+
+        .mobile-menu-content {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: var(--white);
+            z-index: 2000;
+            padding: 30px 20px;
+            transition: right 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .mobile-menu-content.active {
+            right: 0;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-brown);
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-nav li a:hover {
+            color: var(--primary-brown);
+            padding-left: 10px;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--black) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 3.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Content */
+        .contact-content {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-card {
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary-brown);
+        }
+
+        .info-card h3 {
+            color: var(--dark-brown);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            color: var(--primary-brown);
+        }
+
+        .info-card p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Contact Methods */
+        .contact-methods {
+            margin-top: 40px;
+        }
+
+        .contact-methods h3 {
+            color: var(--dark-brown);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .method-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .method-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 18px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .method-btn i {
+            font-size: 1.3rem;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: var(--white);
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .email-btn {
+            background: #EA4335;
+            color: var(--white);
+        }
+
+        .email-btn:hover {
+            background: #D14836;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(234, 67, 53, 0.3);
+        }
+
+        .call-btn {
+            background: var(--primary-brown);
+            color: var(--white);
+        }
+
+        .call-btn:hover {
+            background: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-brown);
+            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-brown);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 69, 19, 0.2);
+        }
+
+        /* Order Instructions */
+        .order-instructions {
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .order-instructions h3 {
+            color: var(--dark-brown);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .order-instructions h3 i {
+            color: var(--accent);
+        }
+
+        .order-instructions ol {
+            padding-left: 20px;
+        }
+
+        .order-instructions li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .footer-column h3:after {
+            background: var(--primary-brown);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 3rem;
+            }
+            
+            .main-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 20px;
+            }
+            
+            .page-header {
+                padding: 60px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-header p {
+                font-size: 1.1rem;
+                padding: 0 15px;
+            }
+            
+            .contact-content {
+                padding: 40px 0;
+            }
+            
+            .contact-info,
+            .contact-form {
+                padding: 30px;
+            }
+            
+            .method-btn {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .mobile-menu-content {
+                width: 85%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1.6rem;
+            }
+            
+            .contact-info,
+            .contact-form {
+                padding: 20px;
+            }
+            
+            .info-card {
+                padding: 20px;
+            }
+            
+            .mobile-menu-content {
+                width: 280px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .method-buttons {
+                gap: 15px;
+            }
+            
+            .method-btn {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="shoes.png" alt="name Logo" class="logo-img">
+                <div class="logo-text">name</div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="main-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Collection</a></li>
+                <li><a href="location.html">Location</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobile-menu-open">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu Content -->
+    <div class="mobile-menu-content" id="mobile-menu-content">
+        <button class="mobile-menu-close" id="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Collection</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header"> 
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Get in touch with us for inquiries, orders, or any assistance you need. We're here to help you find the perfect shoes.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Store Location</h3>
+                        <p><strong>Address:</strong> Nana Center Building</p>
+                        <p><strong>Floor:</strong> Basement Floor, Shop D17</p>
+                        <p><strong>City:</strong> Kampala, Uganda</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-clock"></i> Business Hours</h3>
+                        <p><strong>Monday - Friday:</strong> 9:00 AM - 8:00 PM</p>
+                        <p><strong>Saturday:</strong> 9:00 AM - 6:00 PM</p>
+                        <p><strong>Sunday:</strong> Closed</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-truck"></i> Delivery Service</h3>
+                        <p><strong>Delivery Hours:</strong> Monday - Saturday, 10:00 AM - 6:00 PM</p>
+                        <p>We deliver to any place near Kampala.</p>
+                        <p>Contact us for delivery charges and estimated delivery time.</p>
+                    </div>
+                    
+                    <div class="contact-methods">
+                        <h3>Quick Contact</h3>
+                        <div class="method-buttons">
+                            <a href="https://wa.me/256755307404" class="method-btn whatsapp-btn" target="_blank" id="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                Message us on WhatsApp
+                            </a>
+                            
+                            <a href="mailto:" class="method-btn email-btn" id="email-btn">
+                                <i class="fas fa-envelope"></i>
+                                Send us an Email
+                            </a>
+                            
+                            <a href="tel:0755307404" class="method-btn call-btn" id="call-btn">
+                                <i class="fas fa-phone"></i>
+                                Call Us: 0741172176
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                    
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="shoe-type">Type of Shoes</label>
+                            <select id="shoe-type" name="shoe-type">
+                                <option value="">Select shoe type</option>
+                                <option value="shinny">Shinny Shoes</option>
+                                <option value="boots">Boots</option>
+                                <option value="shorts">Shorts</option>
+                                <option value="halfshoes">Half Shoes</option>
+                                <option value="other">Other Footwear</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="size">Shoe Size</label>
+                            <input type="text" id="size" name="size" placeholder="Enter your shoe size">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" required placeholder="Please describe what you're looking for, including any specific details or questions..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                    
+                    <div class="order-instructions">
+                        <h3><i class="fas fa-info-circle"></i> How to Order</h3>
+                        <ol>
+                            <li><strong>Visit our store</strong> at Nana Center, Basement Floor, Shop D17 to try on shoes</li>
+                            <li><strong>Contact us via WhatsApp</strong> for inquiries and to place orders</li>
+                            <li><strong>Provide details</strong> like shoe type, size, color preference, and delivery address</li>
+                            <li><strong>We'll confirm</strong> availability and provide pricing details</li>
+                            <li><strong>Delivery</strong> will be arranged for locations near Kampala</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>name</h3>
+                    <p>Providing premium quality footwear for every occasion since 2010. We combine style, comfort, and durability in every pair.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="gallery.html">Collection</a>
+                    <a href="location.html">Location</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Nana Center, Basement, Shop D17</p>
+                    <p><i class="fas fa-phone"></i> 0741172176</p>
+                    <p><i class="fas fa-envelope"></i> </p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Contact</h3>
+                    <a href="https://wa.me/256755307404" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: 0741172176</a>
+                    <a href="mailto:"><i class="fas fa-envelope"></i> Email Us</a>
+                    <a href="tel:0755307404"><i class="fas fa-phone"></i> Call Us</a>
+                    <a href="location.html"><i class="fas fa-directions"></i> Get Directions</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 name. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuOpen = document.getElementById('mobile-menu-open');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuContent = document.getElementById('mobile-menu-content');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        
+        // Open mobile menu
+        mobileMenuOpen.addEventListener('click', function() {
+            mobileMenuContent.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileMenuContent.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // WhatsApp functionality
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        const emailBtn = document.getElementById('email-btn');
+        const callBtn = document.getElementById('call-btn');
+        
+        // Phone number details
+        const phoneNumber = '256755307404'; // Uganda format with country code
+        const displayPhone = '0741172176';
+        const emailAddress = '';
+        
+        // WhatsApp message template
+        const whatsappMessage = encodeURIComponent(`Hello name! I'm interested in your shoe collection. Can you please provide me with more information?`);
+        
+        // WhatsApp URL
+        whatsappBtn.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+        
+        // Email functionality
+        emailBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const subject = encodeURIComponent('Inquiry about name');
+            const body = encodeURIComponent(`Hello name,\n\nI would like to inquire about your shoe collection.\n\nPlease provide me with information about:\n\nBest regards,\n[Your Name]`);
+            window.open(`mailto:${emailAddress}?subject=${subject}&body=${body}`, '_blank');
+        });
+        
+        // Call button functionality
+        callBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = `tel:${phoneNumber}`;
+        });
+        
+        // Contact form handling
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const shoeType = document.getElementById('shoe-type').value;
+            const size = document.getElementById('size').value;
+            const message = document.getElementById('message').value;
+            
+            // Validate required fields
+            if (!name || !phone || !message) {
+                alert('Please fill in all required fields (Name, Phone, Message)');
+                return;
+            }
+            
+            // Create WhatsApp message from form data
+            let whatsappFormMessage = `Hello name!\n\n`;
+            whatsappFormMessage += `I would like to make an inquiry/order.\n\n`;
+            whatsappFormMessage += `Name: ${name}\n`;
+            whatsappFormMessage += `Phone: ${phone}\n`;
+            if (email) whatsappFormMessage += `Email: ${email}\n`;
+            if (shoeType) whatsappFormMessage += `Shoe Type: ${shoeType}\n`;
+            if (size) whatsappFormMessage += `Size: ${size}\n\n`;
+            whatsappFormMessage += `Message: ${message}\n\n`;
+            whatsappFormMessage += `Please contact me with availability and pricing.`;
+            
+            // Encode the message
+            const encodedMessage = encodeURIComponent(whatsappFormMessage);
+            
+            // Open WhatsApp with the form data
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+            
+            // Show confirmation message
+            alert('Your message has been prepared. You will now be directed to WhatsApp to send it to us.');
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Add tooltips for better UX
+        whatsappBtn.title = "Click to open WhatsApp and message us directly";
+        emailBtn.title = "Click to send us an email";
+        callBtn.title = "Click to call us directly";
+        
+        // Store contact information for easy access
+        const contactInfo = {
+            phone: phoneNumber,
+            displayPhone: displayPhone,
+            email: emailAddress,
+            address: "Nana Center Building, Basement Floor, Shop D17, Kampala, Uganda"
+        };
+        
+        // Make contact info globally accessible
+        window.contactInfo = contactInfo;
+    </script>
+</body>
+</html>
